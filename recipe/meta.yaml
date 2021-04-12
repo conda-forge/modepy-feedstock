@@ -1,50 +1,50 @@
 {% set name = "modepy" %}
-{% set version = "2016.1.2" %}
-{% set sha256 = "6c6281ee873bbaeab28853ee1b8f2607a0b054af13505dccd6d82e64d6cc3419" %}
+{% set version = "2021.1" %}
+{% set sha256 = "4cddd2d4720128356e0019e8d972d979552eafad059f4acef01e106b22d8d297" %}
 
 package:
-    name: {{ name|lower }}
-    version: {{ version }}
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-    fn: {{ name }}-{{ version }}.tar.gz
-    url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: {{ sha256 }}
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
 
 build:
-    noarch: python
-    number: 1
-    script: python -m pip install --no-deps --ignore-installed .
+  noarch: python
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-    build:
-        - python
-        - setuptools
-        - pip
-    run:
-        - python
-        - numpy
-        - pytools
-        - six
+  host:
+    - python
+    - setuptools
+    - pip
+  run:
+    - python
+    - numpy
+    - pytools
+    - six
 
 test:
-    requires:
-        - pytest
-    imports:
-        - {{ name }}
-    source_files:
-        - test
-    commands:
-         - cd test && python -m pytest
+  requires:
+    - pytest
+  imports:
+    - {{ name }}
+  source_files:
+    - test
+  commands:
+    - cd test && python -m pytest
 
 about:
-    home: http://pypi.python.org/pypi/modepy
-    dev_url: http://github.com/inducer/modepy
-    doc_url: https://documen.tician.de/modepy
-    license: MIT
-    license_file: LICENSE
-    summary: Modes and nodes for high-order methods
+  home: http://pypi.python.org/pypi/modepy
+  dev_url: http://github.com/inducer/modepy
+  doc_url: https://documen.tician.de/modepy
+  license: MIT
+  license_file: LICENSE
+  summary: Modes and nodes for high-order methods
 
 extra:
-    recipe-maintainers:
-        - inducer
+  recipe-maintainers:
+    - inducer
