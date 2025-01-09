@@ -1,6 +1,7 @@
+{% set python_min = "3.10" %}
 {% set name = "modepy" %}
-{% set version = "2021.1" %}
-{% set sha256 = "4cddd2d4720128356e0019e8d972d979552eafad059f4acef01e106b22d8d297" %}
+{% set version = "2025.1" %}
+{% set sha256 = "d72597fdce3a45bddb441ccca7e23d5fce5dd9ef25749964a2da4057d2c7d898" %}
 
 package:
   name: {{ name|lower }}
@@ -8,34 +9,33 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - python >=3.6
-    - setuptools
+    - python {{ python_min }}
+    - hatchling
     - pip
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - numpy
     - pytools
-    - pymbolic >=2021.1
+    - pymbolic >=2024.2
 
 test:
   requires:
     - pytest
+    - python {{ python_min }}
   imports:
     - {{ name }}
-  source_files:
-    - test
   commands:
-    - cd test && python -m pytest
+    - python -m pytest --pyargs {{ name }}
 
 about:
   home: http://pypi.python.org/pypi/modepy
