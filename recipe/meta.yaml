@@ -35,7 +35,7 @@ test:
   imports:
     - {{ name }}
   commands:
-    - python -m pytest
+    - python -m pytest {{ name }}
 
 about:
   home: http://pypi.python.org/pypi/modepy
