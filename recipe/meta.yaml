@@ -1,6 +1,6 @@
 {% set name = "modepy" %}
-{% set version = "2021.1" %}
-{% set sha256 = "4cddd2d4720128356e0019e8d972d979552eafad059f4acef01e106b22d8d297" %}
+{% set version = "2025.1" %}
+{% set sha256 = "d72597fdce3a45bddb441ccca7e23d5fce5dd9ef25749964a2da4057d2c7d898" %}
 
 package:
   name: {{ name|lower }}
@@ -13,7 +13,7 @@ source:
 
 build:
   noarch: python
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
@@ -25,7 +25,7 @@ requirements:
     - python >={{ python_min }}
     - numpy
     - pytools
-    - pymbolic >=2021.1
+    - pymbolic >=2024.2
 
 test:
   requires:
