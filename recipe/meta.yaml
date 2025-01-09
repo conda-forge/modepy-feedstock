@@ -34,10 +34,8 @@ test:
     - python {{ python_min }}
   imports:
     - {{ name }}
-  source_files:
-    - test
   commands:
-    - cd test && python -m pytest
+    - python -m pytest
 
 about:
   home: http://pypi.python.org/pypi/modepy
