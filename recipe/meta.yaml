@@ -1,3 +1,4 @@
+{% set python_min = "3.10" %}
 {% set name = "modepy" %}
 {% set version = "2025.1" %}
 {% set sha256 = "d72597fdce3a45bddb441ccca7e23d5fce5dd9ef25749964a2da4057d2c7d898" %}
@@ -14,7 +15,7 @@ source:
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
